@@ -1,0 +1,27 @@
+{
+  "built_in_tools": {
+    "code_interpreter": {
+      "name": "Code Interpreter",
+      "description": "Code execution environment",
+      "cost_per_container": 0.03,
+      "unit": "per_container",
+      "category": "Built-in Tools"
+    },
+    "file_search_storage": {
+      "name": "File Search Storage",
+      "description": "File storage for search functionality",
+      "cost_per_gb_day": 0.10,
+      "free_gb": 1,
+      "unit": "per_gb_day",
+      "category": "Built-in Tools"
+    },
+    "file_search_tool_call": {
+      "name": "File Search Tool Call (Responses API)",
+      "description": "File search functionality for Responses API",
+      "cost_per_1k_calls": 2.50,
+      "unit": "per_1k_calls",
+      "category": "Built-in Tools",
+      "note": "Does not apply on Assistants API"
+    }
+  }
+} 

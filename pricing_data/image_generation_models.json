@@ -1,0 +1,64 @@
+{
+  "image_generation_models": {
+    "gpt-image-1": {
+      "name": "GPT Image 1",
+      "description": "Advanced image generation",
+      "pricing_type": "per_image",
+      "resolutions": {
+        "1024x1024": {
+          "low": 0.011,
+          "medium": 0.042,
+          "high": 0.167
+        },
+        "1024x1536": {
+          "low": 0.016,
+          "medium": 0.063,
+          "high": 0.25
+        },
+        "1536x1024": {
+          "low": 0.016,
+          "medium": 0.063,
+          "high": 0.25
+        }
+      },
+      "category": "Image Generation"
+    },
+    "dall-e-3": {
+      "name": "DALL·E 3",
+      "description": "High-quality image generation model",
+      "pricing_type": "per_image",
+      "resolutions": {
+        "1024x1024": {
+          "standard": 0.040,
+          "hd": 0.080
+        },
+        "1024x1792": {
+          "standard": 0.080,
+          "hd": 0.120
+        },
+        "1792x1024": {
+          "standard": 0.080,
+          "hd": 0.120
+        }
+      },
+      "category": "Image Generation"
+    },
+    "dall-e-2": {
+      "name": "DALL·E 2",
+      "description": "Standard image generation model",
+      "pricing_type": "per_image",
+      "resolutions": {
+        "256x256": {
+          "standard": 0.016
+        },
+        "512x512": {
+          "standard": 0.018
+        },
+        "1024x1024": {
+          "standard": 0.020
+        }
+      },
+      "category": "Image Generation"
+    }
+  }
+} 

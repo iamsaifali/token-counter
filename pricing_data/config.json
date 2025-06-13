@@ -1,0 +1,131 @@
+{
+  "application": {
+    "name": "OpenAI Token Counter & Cost Calculator",
+    "version": "2.0.0",
+    "description": "Comprehensive token counting and cost calculation for all OpenAI models",
+    "author": "Token Counter Team",
+    "last_updated": "2024-12-19"
+  },
+  "data_sources": {
+    "models_directory": "pricing_data",
+    "model_files": [
+      {
+        "file": "text_models.json",
+        "category": "text_models",
+        "description": "Text-based language models",
+        "pricing_types": ["standard", "cached", "batch"]
+      },
+      {
+        "file": "audio_models.json", 
+        "category": "audio_models",
+        "description": "Audio processing models",
+        "pricing_types": ["audio_tokens", "realtime_audio"]
+      },
+      {
+        "file": "transcription_models.json",
+        "category": "transcription_models", 
+        "description": "Speech-to-text models",
+        "pricing_types": ["per_minute", "transcription"]
+      },
+      {
+        "file": "embeddings_models.json",
+        "category": "embeddings_models",
+        "description": "Text embedding models", 
+        "pricing_types": ["embeddings"]
+      },
+      {
+        "file": "fine_tuning_models.json",
+        "category": "fine_tuning_models",
+        "description": "Fine-tuning models",
+        "pricing_types": ["fine_tuning"]
+      },
+      {
+        "file": "moderation_models.json",
+        "category": "moderation_models", 
+        "description": "Content moderation models",
+        "pricing_types": ["free"]
+      },
+      {
+        "file": "image_generation_models.json",
+        "category": "image_generation_models",
+        "description": "Image generation models",
+        "pricing_types": ["per_image"]
+      },
+      {
+        "file": "web_search_models.json",
+        "category": "web_search_models",
+        "description": "Web search models", 
+        "pricing_types": ["per_call"]
+      },
+      {
+        "file": "built_in_tools.json",
+        "category": "built_in_tools",
+        "description": "Built-in tools and utilities",
+        "pricing_types": ["tool_specific"]
+      }
+    ]
+  },
+  "validation_rules": {
+    "required_fields": {
+      "standard": ["name", "description", "input_cost", "output_cost", "context_window", "category"],
+      "audio_tokens": ["name", "description", "text_input_cost", "text_output_cost", "audio_input_cost", "audio_output_cost", "category"],
+      "realtime_audio": ["name", "description", "text_input_cost", "text_output_cost", "audio_input_cost", "audio_output_cost", "category"],
+      "per_minute": ["name", "description", "cost_per_minute", "category"],
+      "per_character": ["name", "description", "cost_per_1m_characters", "category"], 
+      "embeddings": ["name", "description", "input_cost", "dimensions", "category"],
+      "fine_tuning": ["name", "description", "category"],
+      "free": ["name", "description", "category", "is_free"],
+      "per_image": ["name", "description", "pricing_type", "resolutions", "category"],
+      "per_call": ["name", "description", "pricing", "category"],
+      "tool_specific": ["name", "description", "pricing_structure", "category"]
+    },
+    "field_types": {
+      "name": "string",
+      "description": "string", 
+      "input_cost": "number",
+      "output_cost": "number",
+      "cached_input_cost": "number",
+      "context_window": "integer",
+      "category": "string",
+      "has_cached": "boolean",
+      "has_batch": "boolean",
+      "is_free": "boolean",
+      "dimensions": "integer"
+    },
+    "cost_ranges": {
+      "min_cost": 0.0,
+      "max_cost": 1000.0,
+      "min_context_window": 1000,
+      "max_context_window": 2000000
+    }
+  },
+  "ui_settings": {
+    "default_category": "Latest Models",
+    "items_per_page": 20,
+    "enable_model_management": true,
+    "enable_backup_restore": true,
+    "show_advanced_options": true,
+    "model_management_sections": [
+      "add_model",
+      "edit_model", 
+      "delete_model",
+      "import_export",
+      "backup_restore",
+      "validation"
+    ]
+  },
+  "backup_settings": {
+    "backup_directory": "backups",
+    "auto_backup": true,
+    "backup_frequency": "daily",
+    "max_backups": 30,
+    "backup_format": "json"
+  },
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "log_file": "logs/model_manager.log",
+    "max_log_size": "10MB",
+    "max_log_files": 5
+  }
+} 

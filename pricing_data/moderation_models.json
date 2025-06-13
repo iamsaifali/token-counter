@@ -1,0 +1,40 @@
+{
+  "moderation_models": {
+    "omni-moderation-latest": {
+      "name": "Omni Moderation Latest",
+      "description": "Latest multimodal content moderation",
+      "input_cost": 0.00,
+      "output_cost": 0.00,
+      "context_window": 32768,
+      "category": "Moderation",
+      "is_free": true
+    },
+    "omni-moderation-2024-09-26": {
+      "name": "Omni Moderation 2024-09-26",
+      "description": "Multimodal content moderation",
+      "input_cost": 0.00,
+      "output_cost": 0.00,
+      "context_window": 32768,
+      "category": "Moderation",
+      "is_free": true
+    },
+    "text-moderation-latest": {
+      "name": "Text Moderation Latest",
+      "description": "Latest text content moderation",
+      "input_cost": 0.00,
+      "output_cost": 0.00,
+      "context_window": 32768,
+      "category": "Moderation",
+      "is_free": true
+    },
+    "text-moderation-007": {
+      "name": "Text Moderation 007",
+      "description": "Text content moderation",
+      "input_cost": 0.00,
+      "output_cost": 0.00,
+      "context_window": 32768,
+      "category": "Moderation",
+      "is_free": true
+    }
+  }
+} 

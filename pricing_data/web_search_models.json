@@ -1,0 +1,76 @@
+{
+  "web_search_models": {
+    "gpt-4.1": {
+      "name": "GPT-4.1 Web Search",
+      "description": "Advanced web search capabilities",
+      "search_context_pricing": {
+        "low": 30.00,
+        "medium": 35.00,
+        "high": 50.00
+      },
+      "unit": "per_1k_calls",
+      "context_window": 1000000,
+      "category": "Web Search"
+    },
+    "gpt-4o": {
+      "name": "GPT-4o Web Search",
+      "description": "Multimodal web search capabilities",
+      "search_context_pricing": {
+        "low": 30.00,
+        "medium": 35.00,
+        "high": 50.00
+      },
+      "unit": "per_1k_calls",
+      "context_window": 128000,
+      "category": "Web Search"
+    },
+    "gpt-4o-search-preview": {
+      "name": "GPT-4o Search Preview",
+      "description": "Preview web search capabilities",
+      "search_context_pricing": {
+        "low": 30.00,
+        "medium": 35.00,
+        "high": 50.00
+      },
+      "unit": "per_1k_calls",
+      "context_window": 128000,
+      "category": "Web Search"
+    },
+    "gpt-4.1-mini": {
+      "name": "GPT-4.1 Mini Web Search",
+      "description": "Efficient web search capabilities",
+      "search_context_pricing": {
+        "low": 25.00,
+        "medium": 27.50,
+        "high": 30.00
+      },
+      "unit": "per_1k_calls",
+      "context_window": 1000000,
+      "category": "Web Search"
+    },
+    "gpt-4o-mini": {
+      "name": "GPT-4o Mini Web Search",
+      "description": "Efficient multimodal web search",
+      "search_context_pricing": {
+        "low": 25.00,
+        "medium": 27.50,
+        "high": 30.00
+      },
+      "unit": "per_1k_calls",
+      "context_window": 128000,
+      "category": "Web Search"
+    },
+    "gpt-4o-mini-search-preview": {
+      "name": "GPT-4o Mini Search Preview",
+      "description": "Preview efficient web search",
+      "search_context_pricing": {
+        "low": 25.00,
+        "medium": 27.50,
+        "high": 30.00
+      },
+      "unit": "per_1k_calls",
+      "context_window": 128000,
+      "category": "Web Search"
+    }
+  }
+} 

@@ -1,0 +1,25 @@
+{
+  "transcription_models": {
+    "whisper-1": {
+      "name": "Whisper",
+      "description": "Speech-to-text transcription model",
+      "cost_per_minute": 0.006,
+      "category": "Transcription",
+      "pricing_type": "per_minute"
+    },
+    "tts-1": {
+      "name": "TTS",
+      "description": "Text-to-speech synthesis",
+      "cost_per_1m_characters": 15.00,
+      "category": "Speech Generation",
+      "pricing_type": "per_character"
+    },
+    "tts-1-hd": {
+      "name": "TTS HD",
+      "description": "High-definition text-to-speech synthesis",
+      "cost_per_1m_characters": 30.00,
+      "category": "Speech Generation",
+      "pricing_type": "per_character"
+    }
+  }
+} 

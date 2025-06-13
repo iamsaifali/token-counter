@@ -1,0 +1,64 @@
+{
+  "fine_tuning_models": {
+    "gpt-4o-2024-08-06": {
+      "name": "GPT-4o Fine-tuning",
+      "description": "High-intelligence model fine-tuning",
+      "training_cost_per_1m_tokens": 25.00,
+      "inference_input_cost": 3.75,
+      "inference_cached_input_cost": 1.875,
+      "inference_output_cost": 15.00,
+      "context_window": 128000,
+      "category": "Fine-tuning"
+    },
+    "gpt-4o-mini-2024-07-18": {
+      "name": "GPT-4o Mini Fine-tuning",
+      "description": "Affordable model fine-tuning",
+      "training_cost_per_1m_tokens": 3.00,
+      "inference_input_cost": 0.30,
+      "inference_cached_input_cost": 0.15,
+      "inference_output_cost": 1.20,
+      "context_window": 128000,
+      "category": "Fine-tuning"
+    },
+    "gpt-3.5-turbo-0125": {
+      "name": "GPT-3.5 Turbo Fine-tuning",
+      "description": "Fast model fine-tuning",
+      "training_cost_per_1m_tokens": 8.00,
+      "inference_input_cost": 3.00,
+      "inference_cached_input_cost": 1.50,
+      "inference_output_cost": 6.00,
+      "context_window": 16385,
+      "category": "Fine-tuning"
+    },
+    "gpt-3.5-turbo-1106": {
+      "name": "GPT-3.5 Turbo (1106) Fine-tuning",
+      "description": "Legacy GPT-3.5 fine-tuning",
+      "training_cost_per_1m_tokens": 8.00,
+      "inference_input_cost": 3.00,
+      "inference_cached_input_cost": 1.50,
+      "inference_output_cost": 6.00,
+      "context_window": 16385,
+      "category": "Fine-tuning"
+    },
+    "davinci-002": {
+      "name": "Davinci 002 Fine-tuning",
+      "description": "Legacy completion model fine-tuning",
+      "training_cost_per_1m_tokens": 6.00,
+      "inference_input_cost": 12.00,
+      "inference_cached_input_cost": 6.00,
+      "inference_output_cost": 12.00,
+      "context_window": 16384,
+      "category": "Fine-tuning"
+    },
+    "babbage-002": {
+      "name": "Babbage 002 Fine-tuning",
+      "description": "Efficient legacy model fine-tuning",
+      "training_cost_per_1m_tokens": 0.40,
+      "inference_input_cost": 1.60,
+      "inference_cached_input_cost": 0.80,
+      "inference_output_cost": 1.60,
+      "context_window": 16384,
+      "category": "Fine-tuning"
+    }
+  }
+} 

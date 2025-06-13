@@ -1,0 +1,56 @@
+{
+  "audio_models": {
+    "gpt-4o-audio-preview": {
+      "name": "GPT-4o Audio Preview",
+      "description": "Multimodal model with native audio support",
+      "text_input_cost": 2.50,
+      "text_output_cost": 10.00,
+      "audio_input_cost": 100.00,
+      "audio_output_cost": 200.00,
+      "context_window": 128000,
+      "category": "Audio Models",
+      "has_cached": false,
+      "pricing_type": "audio_tokens"
+    },
+    "gpt-4o-audio-preview-2024-10-01": {
+      "name": "GPT-4o Audio Preview (October)",
+      "description": "Legacy audio processing model",
+      "text_input_cost": 2.50,
+      "text_output_cost": 10.00,
+      "audio_input_cost": 100.00,
+      "audio_output_cost": 200.00,
+      "context_window": 128000,
+      "category": "Audio Models",
+      "has_cached": false,
+      "pricing_type": "audio_tokens"
+    },
+    "gpt-4o-realtime-preview": {
+      "name": "GPT-4o Realtime Preview",
+      "description": "Real-time audio processing model",
+      "text_input_cost": 5.00,
+      "text_cached_input_cost": 2.50,
+      "text_output_cost": 20.00,
+      "audio_input_cost": 100.00,
+      "audio_cached_input_cost": 20.00,
+      "audio_output_cost": 200.00,
+      "context_window": 128000,
+      "category": "Realtime Audio",
+      "has_cached": true,
+      "pricing_type": "realtime_audio"
+    },
+    "gpt-4o-realtime-preview-2024-10-01": {
+      "name": "GPT-4o Realtime Preview (October)",
+      "description": "Legacy real-time audio processing",
+      "text_input_cost": 5.00,
+      "text_cached_input_cost": 2.50,
+      "text_output_cost": 20.00,
+      "audio_input_cost": 100.00,
+      "audio_cached_input_cost": 20.00,
+      "audio_output_cost": 200.00,
+      "context_window": 128000,
+      "category": "Realtime Audio",
+      "has_cached": true,
+      "pricing_type": "realtime_audio"
+    }
+  }
+} 
