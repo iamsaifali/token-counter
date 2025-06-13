@@ -1,22 +1,6 @@
 # 🧮 OpenAI Token Counter & Cost Calculator
 
-A **Streamlit web application** for calculating token counts and costs across **all OpenAI model types** including text models, audio processing, image generation, embeddings, fine-tuning, and specialized tools. This application provides real-time cost analysis with support for batch API, cached inputs, and detailed cost breakdowns.
-
-## 🆕 **What's New in Version 2.0**
-
-### **📁 File-Based Model Management**
-- **Zero Hardcoded Models**: All model data is loaded from JSON files
-- **Dynamic Configuration**: Centralized config system for easy management
-- **Real-time Updates**: Add/edit/delete models without code changes
-- **Automatic Backup**: Built-in backup and restore functionality
-- **Data Validation**: Comprehensive validation with error reporting
-
-### **⚙️ Model Management Interface**
-- **Complete CRUD Operations**: Add, view, edit, and delete models through the UI
-- **Category Management**: Organize models by categories and pricing types
-- **Import/Export**: Bulk operations for model data
-- **Backup/Restore**: Automated backups with easy restore functionality
-- **Validation Tools**: Built-in validation with detailed error reporting
+A comprehensive **Streamlit web application** for calculating token counts and costs across **all OpenAI model types** including text models, audio processing, image generation, embeddings, fine-tuning, and specialized tools. This application provides real-time cost analysis with support for batch API, cached inputs, and comprehensive model management.
 
 ## 🚀 Features Overview
 
@@ -38,10 +22,9 @@ A **Streamlit web application** for calculating token counts and costs across **
 - **Multi-format file processing** with automatic token counting
 
 ### 🔧 **File Processing Support**
-- **Text files**: .txt, .md, .csv
+- **Text files**: .txt, .md, .csv, .py, .js, .html, .css, .json, .xml
 - **Documents**: .docx, .pdf, .pptx
 - **Spreadsheets**: .xlsx, .xls
-- **Images**: .png, .jpg, .jpeg (for context)
 
 ## 📋 Requirements
 
@@ -65,6 +48,7 @@ python-pptx>=0.6.21    # PowerPoint files
 Pillow>=10.0.0         # Image processing
 plotly>=5.17.0         # Interactive charts
 chardet>=5.2.0         # Text encoding detection
+xlrd>=2.0.1            # Excel file reading
 ```
 
 ## 🚀 Quick Start Guide
@@ -99,801 +83,969 @@ python run.py
 
 **The application will automatically open in your web browser at `http://localhost:8501`**
 
-## 📁 **Model Management System**
+---
 
-### **🎯 Overview**
-Version 2.0 introduces a comprehensive file-based model management system that eliminates hardcoded model data and provides full control over model configurations through JSON files.
+## 📖 **COMPLETE USER INTERFACE GUIDE**
 
-### **📂 File Structure**
-```
-tokken_counter/
-├── pricing_data/
-│   ├── config.json                    # Central configuration
-│   ├── text_models.json              # Text-based models
-│   ├── audio_models.json             # Audio processing models
-│   ├── transcription_models.json     # Speech-to-text models
-│   ├── embeddings_models.json        # Embedding models
-│   ├── fine_tuning_models.json       # Fine-tuning models
-│   ├── moderation_models.json        # Content moderation models
-│   ├── image_generation_models.json  # Image generation models
-│   ├── web_search_models.json        # Web search models
-│   └── built_in_tools.json          # Built-in tools
-├── logs/                             # Application logs
-├── backups/                          # Automatic backups
-├── model_manager.py                  # Core model management
-├── model_utils.py                    # Utility functions
-└── model_management_ui.py           # Streamlit UI components
-```
+This guide documents **every single UI element** in the application. No feature, button, dropdown, or option is omitted.
 
-### **⚙️ Model Management Interface**
+---
 
-Access the model management interface through the **"Model Management"** tab in the application.
+## 🎯 **MAIN APPLICATION HEADER**
+
+### **Application Title**
+- **Location**: Top of the page
+- **Display**: "🧮 OpenAI Token Counter & Cost Calculator"
+- **Purpose**: Identifies the application and its main function
+
+### **Subtitle**
+- **Text**: "Calculate token counts and costs for all OpenAI models with support for different pricing categories."
+- **Purpose**: Brief description of application capabilities
+
+---
+
+## 📋 **SIDEBAR CONFIGURATION PANEL**
+
+### **Configuration Header**
+- **Label**: "⚙️ Configuration"
+- **Purpose**: Groups all model selection and pricing options
+
+### **Model Category Dropdown**
+- **Label**: "Select Model Category"
+- **Type**: Dropdown/Selectbox
+- **Options**: Dynamically loaded categories including:
+  - Audio Models
+  - Built-in Tools
+  - Embedding Models  
+  - Fine-tuning Models
+  - Flagship Models
+  - Image Generation Models
+  - Moderation Models
+  - o1 Models
+  - Small Models
+  - Transcription Models
+  - Web Search Models
+- **How to Use**: Click dropdown and select a category to filter available models
+- **Purpose**: Filter models by category for easier selection
+
+### **Model Selection Dropdown**
+- **Label**: "Select Model"
+- **Type**: Dropdown/Selectbox
+- **Options**: Changes based on selected category (shows specific model IDs)
+- **How to Use**: After selecting a category, choose the specific model you want to use
+- **Purpose**: Choose specific model for calculations
+
+### **Model Information Panel**
+- **Label**: "📊 Model Information"
+- **Type**: Expandable section (expanded by default)
+- **Contents**:
+  - **Name**: Full model name
+  - **Description**: Model capabilities and use cases
+  - **Category**: Model category classification
+  - **Context Window**: Maximum tokens the model can handle
+  - **Pricing Information**: Detailed cost structure showing:
+    - Input token costs ($/1M tokens)
+    - Output token costs ($/1M tokens)
+    - Cached input costs (if supported)
+    - Audio token costs (for audio models)
+    - Training costs (for fine-tuning models)
+    - Per-minute costs (for speech models)
+    - Per-character costs (for TTS models)
+    - Special pricing notes for tools
+
+### **Pricing Options Section**
+- **Header**: "💰 Pricing Options"
+
+#### **Use Cached Input Checkbox**
+- **Label**: "Use Cached Input (50% discount)"
+- **Type**: Checkbox
+- **Default**: Unchecked
+- **When Available**: Only enabled for models that support cached input
+- **How to Use**: Check this box to apply 50% discount to input token costs
+- **Purpose**: Calculate costs when using OpenAI's prompt caching feature
+
+#### **Use Batch API Checkbox**
+- **Label**: "Use Batch API (50% discount)"
+- **Type**: Checkbox
+- **Default**: Unchecked
+- **When Available**: Only enabled for models that support batch processing
+- **How to Use**: Check this box to apply 50% discount to total costs
+- **Purpose**: Calculate costs for non-real-time batch processing workloads
+
+---
+
+## 📑 **MAIN CONTENT TABS**
+
+The application has **7 main tabs**, each with specific functionality:
+
+---
+
+## 📝 **TAB 1: TEXT INPUT**
+
+### **Tab Purpose**: Calculate token counts and costs for text-based inputs
+
+### **Interface varies by selected model type:**
+
+#### **For Standard Text Models (GPT-4o, GPT-3.5, o1, etc.):**
+
+##### **Text Input Area**
+- **Label**: "Enter Text for Token Counting"
+- **Type**: Multi-line text area
+- **Height**: 150 pixels
+- **Placeholder**: "Enter your text here..."
+- **How to Use**: Type or paste your text content
+- **Purpose**: Input text for automatic token calculation
+
+##### **Estimated Output Tokens Input**
+- **Label**: "Estimated Output Tokens"
+- **Type**: Number input
+- **Minimum**: 0
+- **Default**: 100
+- **Step**: 10
+- **How to Use**: Enter expected number of output tokens from the model
+- **Purpose**: Calculate total cost including response generation
+
+##### **Results Display (appears after entering text)**
+- **Input Tokens Metric**: Shows calculated input tokens
+- **Output Tokens Metric**: Shows your estimated output tokens
+- **Total Cost Metric**: Shows calculated total cost in USD
+- **Context Window Warning**: Appears if total tokens exceed model limits
+
+#### **For Audio Models (audio_tokens/realtime_audio):**
+
+##### **Text Components Section**
+- **Text Input Area**: For text portion of audio processing
+- **Text Output Tokens**: Number input for expected text response
+
+##### **Audio Components Section**
+- **Audio Input Tokens**: Number input for audio input processing
+- **Audio Output Tokens**: Number input for audio output generation
+
+##### **Use Cached Input Checkbox**
+- **Label**: "Use Cached Input (for supported models)"
+- **Purpose**: Apply caching discount for audio models
+
+##### **Results Display (3 columns)**
+- **Column 1**: Text Tokens (input + output)
+- **Column 2**: Audio Tokens (input + output)
+- **Column 3**: Total Cost
+
+#### **For Speech Models (TTS - per_character):**
+
+##### **Text Input Area**
+- **Label**: "Text to Convert to Speech"
+- **Height**: 150 pixels
+- **Placeholder**: "Enter text you want to convert to speech..."
+
+##### **Results Display (3 columns)**
+- **Column 1**: Characters count
+- **Column 2**: Cost per 1M characters
+- **Column 3**: Total Cost
+
+#### **For Transcription Models (per_minute):**
+
+##### **Audio Duration Input**
+- **Label**: "Audio Duration (minutes)"
+- **Type**: Number input
+- **Minimum**: 0.0
+- **Default**: 1.0
+- **Step**: 0.1
+
+##### **Results Display (2 columns)**
+- **Column 1**: Duration in minutes
+- **Column 2**: Total Cost
+
+#### **For Embeddings Models:**
+
+##### **Text Input Area**
+- **Label**: "Input Text"
+- **Purpose**: Text to generate embeddings for
+
+##### **Results Display (3 columns)**
+- **Column 1**: Input Tokens
+- **Column 2**: Dimensions (model-specific)
+- **Column 3**: Total Cost
+
+#### **For Fine-tuning Models:**
+
+##### **Training Section (2 columns)**
+- **Column 1**: 
+  - Training Hours input (for hour-based pricing)
+  - OR Training Tokens input (for token-based pricing)
+- **Column 2**:
+  - Inference Input Tokens
+  - Inference Output Tokens
+
+##### **Data Sharing Checkbox**
+- **Label**: "Use Data Sharing (reduced costs)"
+- **Purpose**: Apply data sharing discounts where available
+
+##### **Results Display (3 columns)**
+- **Column 1**: Training Hours/Tokens
+- **Column 2**: Inference Tokens total
+- **Column 3**: Total Cost
+
+#### **For Free Models:**
+
+##### **Text Input Area**
+- **Standard text input for testing
+
+##### **Results Display (2 columns)**
+- **Column 1**: Token count
+- **Column 2**: "FREE ✨" indicator
+
+---
+
+## 📁 **TAB 2: FILE UPLOAD**
+
+### **Tab Label**: "📁 File Upload"
+### **Purpose**: Process uploaded files and calculate token costs
+
+### **File Uploader Widget**
+- **Label**: "Choose files"
+- **Type**: File uploader
+- **Supported Types**: 'txt', 'pdf', 'docx', 'xlsx', 'xls', 'pptx', 'md', 'py', 'js', 'html', 'css', 'json', 'xml', 'csv'
+- **Multiple Files**: Yes
+- **Purpose**: Upload documents for text extraction and analysis
+
+### **File Processing Results**
+Each uploaded file gets its own expandable section:
+
+#### **File Expander**
+- **Label**: "📄 [filename]"
+- **State**: Expanded if only one file uploaded
+- **Loading Indicator**: "Processing [filename]..." spinner
+
+#### **Text Preview Area**
+- **Label**: "Extracted Text Preview"
+- **Content**: First 500 characters of extracted text
+- **Type**: Text area (read-only)
+- **Height**: 150 pixels
+
+#### **Output Tokens Input**
+- **Label**: "Estimated Output Tokens for [filename]"
+- **Type**: Number input
+- **Minimum**: 0
+- **Default**: 100
+- **Step**: 10
+- **Unique Key**: Based on filename
+
+#### **Results Display (3 columns)**
+- **Column 1**: Input Tokens from file
+- **Column 2**: Estimated Output Tokens
+- **Column 3**: Total Cost
+
+#### **Pricing Type Caption**
+- **Content**: Shows pricing type (e.g., "Pricing: Standard")
+
+#### **Error Handling**
+- **File Processing Errors**: Displayed as error messages
+- **Cost Calculation Errors**: Fallback to basic token display
+
+---
+
+## 📊 **TAB 3: ANALYTICS**
+
+### **Tab Label**: "📊 Analytics"
+### **Purpose**: Compare model costs and analyze pricing
+
+### **Cost Analytics Header**
+- **Label**: "📊 Cost Analytics"
+
+### **Model Cost Comparison Section**
+- **Header**: "Model Cost Comparison"
+
+#### **Comparison Text Input**
+- **Label**: "Text for Comparison"
+- **Type**: Text area
+- **Default**: "Hello, how are you today?"
+- **Height**: 100 pixels
+- **Purpose**: Standard text for comparing across models
+
+#### **Comparison Output Tokens Input**
+- **Label**: "Output Tokens for Comparison"
+- **Type**: Number input
+- **Minimum**: 0
+- **Default**: 50
+- **Step**: 10
+
+#### **Comparison Results**
+- **Interactive Chart**: Plotly bar chart showing cost comparison
+- **Data Table**: Pandas DataFrame with model names and costs
+- **Models Compared**: Top models (GPT-4o Mini, GPT-4o, o1-mini)
+
+---
+
+## 🔧 **TAB 4: TOOLS & SPECIAL MODELS**
+
+### **Tab Label**: "🔧 Tools & Special Models"
+### **Purpose**: Calculate costs for specialized OpenAI services
+
+### **Three-Column Layout**
+
+#### **Column 1: Image Generation**
+- **Header**: "🎨 Image Generation"
+
+##### **Image Model Dropdown**
+- **Label**: "Image Model"
+- **Options**: Available image generation models (DALL-E 3, DALL-E 2)
+
+##### **Number of Images Input**
+- **Label**: "Number of Images"
+- **Type**: Number input
+- **Minimum**: 1
+- **Default**: 1
+
+##### **Resolution Dropdown**
+- **Label**: "Resolution"
+- **Options**: Model-specific resolutions (1024x1024, 1024x1792, etc.)
+
+##### **Quality Dropdown**
+- **Label**: "Quality"
+- **Options**: standard, hd (varies by resolution)
+
+##### **Cost Display**
+- **Metric**: "Total Cost"
+- **Format**: Dollar amount with 4 decimal places
+
+##### **Cost Details Expander**
+- **Label**: "Image Cost Details"
+- **Contents**: Cost per image, resolution, quality settings
+
+#### **Column 2: Web Search**
+- **Header**: "🔍 Web Search"
+
+##### **Search Model Dropdown**
+- **Label**: "Search Model"
+- **Options**: Available web search models
+
+##### **Number of Calls Input**
+- **Label**: "Number of Calls"
+- **Type**: Number input
+- **Minimum**: 1
+- **Default**: 1000
+
+##### **Context Size Dropdown**
+- **Label**: "Context Size"
+- **Options**: small, medium, large (model-specific)
+
+##### **Cost Display**
+- **Metric**: "Total Cost"
+
+##### **Search Cost Details Expander**
+- **Label**: "Search Cost Details"
+- **Contents**: Cost per 1K calls, number of calls, context size
+
+#### **Column 3: Built-in Tools**
+- **Header**: "🛠️ Built-in Tools"
+
+##### **Tool Selection Dropdown**
+- **Label**: "Tool"
+- **Options**: 
+  - code_interpreter
+  - file_search_storage
+  - file_search_tool_call
+
+##### **Dynamic Input Fields (based on tool):**
+
+###### **For Code Interpreter:**
+- **Number of Containers Input**
+  - **Label**: "Number of Containers"
+  - **Minimum**: 1
+  - **Default**: 1
+
+###### **For File Search Storage:**
+- **GB-Days Input**
+  - **Label**: "GB-Days"
+  - **Type**: Number input
+  - **Minimum**: 0.0
+  - **Default**: 1.0
+  - **Step**: 0.1
+
+###### **For File Search Tool Call:**
+- **Number of Calls Input**
+  - **Label**: "Number of Calls"
+  - **Minimum**: 1
+  - **Default**: 1000
+
+##### **Tool Cost Details Expander**
+- **Label**: "Tool Cost Details"
+- **Contents**: Tool-specific pricing breakdown
+
+### **Comprehensive Model Summary Section**
+- **Header**: "📋 Comprehensive Model Summary"
+- **Purpose**: Overview of all available models
+
+#### **Summary Table**
+- **Columns**:
+  - Model: Model name
+  - Category: Model category
+  - Pricing Type: Type of pricing structure
+  - Base Price: Starting price information
+  - Context Window: Token limit
+- **Data Sources**:
+  - Regular models
+  - Image generation models
+  - Web search models
+  - Built-in tools
+- **Display**: Full-width DataFrame
+
+---
+
+## 🔍 **TAB 5: SYSTEM STATUS**
+
+### **Tab Label**: "🔍 System Status & Validation"
+### **Purpose**: Monitor system health and validate model data
+
+### **System Validation**
+- **Loading Message**: "Running comprehensive system validation..." with spinner
+
+### **Status Overview (4 columns)**
+- **Column 1**: 
+  - **Metric**: "Pricing Files Loaded"
+  - **Format**: "[loaded]/[total]"
+- **Column 2**:
+  - **Metric**: "Total Models"
+  - **Value**: Count of all models
+- **Column 3**:
+  - **Metric**: "Issues Found"
+  - **Value**: Number of validation issues
+- **Column 4**:
+  - **Metric**: "Special Models"
+  - **Value**: Count of special model types
+
+### **Pricing Files Status Section**
+- **Header**: "📄 Pricing Files Status"
+- **Table Columns**:
+  - File: Filename without path
+  - Status: "✅ Loaded" or "❌ Missing"
+- **Purpose**: Monitor data file availability
+
+### **Models by Category Section**
+- **Header**: "📊 Models by Category"
+- **Interactive Bar Chart**: Plotly bar chart showing model distribution
+- **Data Table**: Category names and model counts
+
+### **Pricing Types Distribution Section**
+- **Header**: "💰 Pricing Types Distribution"
+- **Interactive Pie Chart**: Plotly pie chart of pricing type distribution
+- **Data Table**: Pricing types and counts
+
+### **Issues and Warnings Section**
+- **Header**: "⚠️ Issues Found"
+- **Content**: Error messages for any validation failures
+- **Success State**: "✅ No issues found! All pricing files are properly loaded and validated."
+
+### **System Information Section**
+- **Header**: "🖥️ System Information"
+
+#### **Python Libraries Expander**
+- **Label**: "📋 Python Libraries"
+- **Contents**: Library versions (Streamlit, Pandas, NumPy, Tiktoken)
+
+#### **File Support Expander**
+- **Label**: "📋 File Support"
+- **Contents**: Supported file processing libraries
+
+---
+
+## 🧪 **TAB 6: MODEL TESTING HUB**
+
+### **Tab Label**: "🧪 Model Testing Hub"
+### **Purpose**: Comprehensive testing interface for all model types
+
+### **Testing Hub Header**
+- **Title**: "🧪 Comprehensive Model Testing Hub"
+- **Subtitle**: "Test and calculate costs for all OpenAI model types with dedicated interfaces."
+
+### **Testing Category Dropdown**
+- **Label**: "Choose Testing Category"
+- **Options**:
+  - "🤖 Text & Chat Models"
+  - "🎵 Audio & Speech Models"
+  - "🔤 Embeddings Models"
+  - "🎨 Image Generation"
+  - "🔍 Search & Tools"
+  - "🎓 Fine-tuning Models"
+  - "🆓 Free Models"
+
+### **Category-Specific Interfaces:**
+
+#### **🤖 Text & Chat Models**
+- **Header**: "Text and Chat Models Testing"
+
+##### **Model Selection Dropdown**
+- **Label**: "Select Text Model"
+- **Options**: Filtered to standard pricing type models
+
+##### **Input Section (2 columns)**
+- **Column 1**: Text input area (200px height)
+- **Column 2**: 
+  - Expected Output Tokens input
+  - Use Cached Input checkbox
+  - Use Batch API checkbox
+
+##### **Results Display (4 columns)**
+- Input Tokens, Output Tokens, Total Tokens, Total Cost
+
+##### **Detailed Cost Breakdown Expander**
+- **Label**: "💰 Detailed Cost Breakdown"
+- **Contents**: Itemized costs and pricing type
+
+#### **🎵 Audio & Speech Models**
+- **Header**: "Audio and Speech Models Testing"
+
+##### **Audio Model Type Radio Buttons**
+- **Options**:
+  - "🎙️ Audio Processing"
+  - "🗣️ Text-to-Speech"
+  - "📝 Speech-to-Text"
+
+###### **🎙️ Audio Processing Sub-interface**
+- **Model Selection**: Audio/realtime audio models
+- **Text Components Section**:
+  - Text Input area
+  - Text Output Tokens input
+- **Audio Components Section**:
+  - Audio Input Tokens input
+  - Audio Output Tokens input
+- **Use Cached Input Checkbox**
+- **Results**: Text Tokens, Audio Tokens, Total Cost
+
+###### **🗣️ Text-to-Speech Sub-interface**
+- **Model Selection**: per_character pricing models
+- **Text Input**: Large text area for TTS conversion
+- **Results**: Characters, Cost/1M chars, Total Cost
+
+###### **📝 Speech-to-Text Sub-interface**
+- **Model Selection**: per_minute pricing models (Whisper)
+- **Audio Duration Input**: Minutes with decimal precision
+- **Info**: "Whisper models charge per minute of audio processed"
+- **Results**: Duration, Cost/minute, Total Cost
+
+#### **🔤 Embeddings Models**
+- **Header**: "Embeddings Models Testing"
+- **Model Selection**: Embeddings-specific models
+- **Text Input**: Large area for embedding text
+- **Use Batch API Checkbox**
+- **Info**: "Embeddings only use input tokens"
+- **Results**: Input Tokens, Dimensions, Cost/1K tokens, Total Cost
+
+#### **🎨 Image Generation**
+- **Header**: "Image Generation Testing"
+- **Model Selection**: Image generation models
+- **Configuration (3 columns)**:
+  - Number of Images (1-10)
+  - Resolution dropdown
+  - Quality dropdown
+- **Results**: Images, Resolution, Cost/Image, Total Cost
+- **Sample Prompts Expander**: Pre-written example prompts
+
+#### **🔍 Search & Tools**
+- **Header**: "Search and Tools Testing"
+
+##### **Tool Type Radio Buttons**
+- **Options**: "🌐 Web Search", "🛠️ Built-in Tools"
+
+###### **🌐 Web Search Sub-interface**
+- **Model Selection**: Web search models
+- **Configuration**: Number of calls, Context size
+- **Results**: Search Calls, Cost/1K Calls, Total Cost
+
+###### **🛠️ Built-in Tools Sub-interface**
+- **Tool Selection**: Built-in tools dropdown
+- **Dynamic Inputs**: Based on selected tool
+- **Results**: Tool-specific metrics and costs
+
+#### **🎓 Fine-tuning Models**
+- **Header**: "Fine-tuning Models Testing"
+- **Model Selection**: Fine-tuning specific models
+- **Info**: "Fine-tuning involves training costs and inference costs"
+- **Training Phase Section**: Hours or tokens input
+- **Inference Phase Section**: Input/output tokens
+- **Checkboxes**: Use Cached Input, Use Data Sharing
+- **Results**: Training metrics, Training Cost, Inference Cost, Total Cost
+
+#### **🆓 Free Models**
+- **Header**: "Free Models Testing"
+- **Model Selection**: Free models (moderation, etc.)
+- **Test Input**: Text area for testing
+- **Results**: Input Tokens, Model Type, "FREE ✨" indicator
+- **Success Message**: "💡 This model is completely free to use!"
+
+### **Quick Testing Tips Expander**
+- **Label**: "💡 Quick Testing Tips"
+- **Contents**: 
+  - Efficient testing strategies for each model type
+  - Best practices for different scenarios
+  - Cost optimization tips
+
+---
+
+## ⚙️ **TAB 7: MODEL MANAGEMENT**
+
+### **Tab Label**: "⚙️ Model Management"
+### **Purpose**: Complete model data management interface
+
+### **Management Header**
+- **Title**: "⚙️ Model Management"
+- **Subtitle**: "Manage your model data files - add, edit, delete, and maintain model configurations."
+
+### **Management Action Dropdown**
+- **Label**: "Choose Management Action"
+- **Options**:
+  - "📊 View Models"
+  - "➕ Add Model"
+  - "✏️ Edit Model"
+  - "🗑️ Delete Model"
+  - "📤 Import/Export"
+  - "💾 Backup/Restore"
+  - "✅ Validate Data"
+
+### **Management Interfaces by Action:**
 
 #### **📊 View Models**
-- Browse all models by category
-- View detailed model information
-- Search and filter capabilities
-- Export model data as CSV/JSON
-
-#### **➕ Add New Models**
-1. Select existing category or create new one
-2. Choose pricing type (standard, audio, embeddings, etc.)
-3. Fill in model details (costs, context window, etc.)
-4. Automatic validation before saving
-5. Real-time availability in the application
-
-#### **✏️ Edit Existing Models**
-1. Select category and model
-2. Modify any field (name, costs, features)
-3. Validation ensures data integrity
-4. Automatic backup before changes
-5. Immediate updates across the application
-
-#### **🗑️ Delete Models**
-1. Select model to remove
-2. Preview model details
-3. Confirmation required
-4. Automatic backup created
-5. Safe deletion with rollback option
-
-#### **📤 Import/Export Operations**
-- **Export**: Download model data as JSON
-- **Import**: Upload and merge model data
-- **Batch Operations**: Manage multiple models
-- **Format Validation**: Ensures data integrity
-
-#### **💾 Backup & Restore**
-- **Automatic Backups**: Created before any changes
-- **Manual Backups**: On-demand backup creation
-- **Restore Points**: Roll back to any previous state
-- **Backup Management**: Automatic cleanup of old backups
-
-### **🔧 Configuration Management**
-
-#### **config.json Structure**
-```json
-{
-  "application": {
-    "name": "OpenAI Token Counter & Cost Calculator",
-    "version": "2.0.0"
-  },
-  "data_sources": {
-    "models_directory": "pricing_data",
-    "model_files": [...]
-  },
-  "validation_rules": {
-    "required_fields": {...},
-    "field_types": {...},
-    "cost_ranges": {...}
-  },
-  "ui_settings": {
-    "enable_model_management": true,
-    "items_per_page": 20
-  },
-  "backup_settings": {
-    "auto_backup": true,
-    "max_backups": 30
-  }
-}
-```
-
-### **📝 Adding New Models**
-
-#### **Method 1: Using the UI (Recommended)**
-1. Go to **Model Management** tab
-2. Select **"Add Model"**
-3. Fill in the form fields
-4. Click **"Add Model"**
-
-#### **Method 2: Direct File Editing**
-1. Open the appropriate JSON file in `pricing_data/`
-2. Add your model following the existing structure
-3. Restart the application to load changes
-
-#### **Example Model Structure**
-```json
-{
-  "your-model-id": {
-    "name": "Your Model Name",
-    "description": "Model description",
-    "input_cost": 2.50,
-    "output_cost": 10.00,
-    "cached_input_cost": 1.25,
-    "context_window": 128000,
-    "category": "Your Category",
-    "pricing_type": "standard",
-    "has_cached": true,
-    "has_batch": true
-  }
-}
-```
-
-### **🔍 Model Validation**
-
-The system includes comprehensive validation:
-
-#### **Required Fields by Pricing Type**
-- **Standard Models**: name, description, input_cost, output_cost, context_window, category
-- **Audio Models**: text_input_cost, text_output_cost, audio_input_cost, audio_output_cost
-- **Embeddings**: input_cost, dimensions
-- **Per-minute Models**: cost_per_minute
-- **Free Models**: is_free flag
-
-#### **Data Type Validation**
-- String fields: name, description, category
-- Numeric fields: all cost values, context_window, dimensions
-- Boolean fields: has_cached, has_batch, is_free
-
-#### **Range Validation**
-- Cost values: $0.00 - $1000.00 per 1M tokens
-- Context windows: 1,000 - 2,000,000 tokens
-
-### **🚨 Error Handling & Recovery**
-
-#### **Automatic Recovery**
-- **Fallback Models**: Emergency models if files are corrupted
-- **Backup Restoration**: Automatic rollback on critical errors
-- **Validation Warnings**: Non-blocking warnings for minor issues
-
-#### **Manual Recovery**
-1. **Check Logs**: Review `logs/model_manager.log`
-2. **Restore Backup**: Use the restore interface
-3. **Validate Data**: Run validation tools
-4. **Emergency Reset**: Restore from emergency fallback
-
-## 📖 Complete Usage Guide
-
-### 🗂️ **Tab 1: Text Input**
-**Purpose**: Calculate costs for text-based models with manual input
-
-#### Text & Chat Models
-1. **Select Model Category** (Flagship, Small Models, Reasoning, etc.)
-2. **Choose Specific Model** (GPT-4o, o1-mini, etc.)
-3. **Enter your text** in the text area
-4. **Set output tokens** estimate
-5. **Toggle options**:
-   - ✅ Use Cached Input (50% discount)
-   - ✅ Use Batch API (50% discount)
-
-**Results Display**:
-- 📊 Input/Output token counts
-- 💰 Total cost breakdown
-- ⚠️ Context window warnings
-
-#### Audio Processing Models
-1. **Select Audio Model** (GPT-4o Audio, Realtime)
-2. **Enter text component**
-3. **Specify audio tokens**:
-   - Audio Input Tokens
-   - Audio Output Tokens
-4. **Enable caching** if supported
-
-#### Embeddings Models
-1. **Select Embeddings Model** (text-embedding-3-small/large)
-2. **Enter text for embedding**
-3. **Choose Batch API** for discounts
-4. **View dimensions** and cost per 1K tokens
-
-#### Speech Models
-**Text-to-Speech (TTS)**:
-- Enter text to convert
-- Automatic character counting
-- Real-time cost calculation
-
-**Speech-to-Text (Whisper)**:
-- Input audio duration in minutes
-- Per-minute pricing display
-
-#### Fine-tuning Models
-1. **Select fine-tuning model**
-2. **Training Phase**:
-   - Training tokens OR training hours
-3. **Inference Phase**:
-   - Input/output token estimates
-4. **Options**:
-   - Cached input support
-   - Data sharing discounts
-
-### 📁 **Tab 2: File Upload**
-**Purpose**: Process files and calculate costs automatically
-
-#### Supported File Types
-| File Type | Extensions | Processing Method |
-|-----------|------------|-------------------|
-| Text Files | .txt, .md, .csv | Direct text extraction |
-| Word Documents | .docx | python-docx library |
-| PDF Files | .pdf | PyPDF2 + pdfplumber |
-| Excel Files | .xlsx, .xls | openpyxl + xlrd |
-| PowerPoint | .pptx | python-pptx |
-
-#### Upload Process
-1. **Drag & drop** or **browse** for files
-2. **Select model** for cost calculation
-3. **Choose pricing options** (cached, batch)
-4. **View results**:
-   - Extracted text preview
-   - Token count
-   - Cost estimation
-   - Processing time
-
-### 📊 **Tab 3: Analytics**
-**Purpose**: Compare models and analyze cost efficiency
-
-#### Model Comparison
-1. **Enter comparison text**
-2. **Set output token estimate**
-3. **View interactive chart** comparing:
-   - GPT-4o Mini (most cost-effective)
-   - GPT-4o (balanced performance)
-   - o1-Mini (for reasoning tasks)
-
-#### Analytics Features
-- 📈 **Cost comparison charts**
-- 📋 **Model performance tables**
-- 💡 **Optimization recommendations**
-
-### 🗂️ **Tab 7: Model Management**
-**Purpose**: Comprehensive model data management interface
-
-#### Model Operations
-1. **View Models**: Browse and search all models by category
-2. **Add Models**: Create new models with guided forms
-3. **Edit Models**: Modify existing model properties
-4. **Delete Models**: Remove models with confirmation and backup
-5. **Import/Export**: Bulk operations for model data
-6. **Backup/Restore**: Manage backup files and restoration
-7. **Validate Data**: Check data integrity and fix issues
-
-#### Management Features
-- **Real-time Updates**: Changes apply immediately
-- **Automatic Backups**: Created before any modifications
-- **Data Validation**: Comprehensive error checking
-- **Category Management**: Organize models by type
-- **Bulk Operations**: Handle multiple models efficiently
-
-### 🔧 **Tab 4: Tools & Special Models**
-**Purpose**: Calculate costs for specialized OpenAI services
-
-#### Image Generation (DALL-E)
-**DALL-E 3**:
-- **Resolutions**: 1024×1024, 1024×1792, 1792×1024
-- **Quality**: Standard ($0.040), HD ($0.080-$0.120)
-- **Pricing**: Per-image basis
-
-**DALL-E 2**:
-- **Resolutions**: 256×256 ($0.016), 512×512 ($0.018), 1024×1024 ($0.020)
-
-#### Web Search Models
-1. **Select search model**
-2. **Enter number of calls**
-3. **Choose context size**:
-   - Small, Medium, Large
-4. **Per-1K-calls pricing**
-
-#### Built-in Tools
-**Code Interpreter**:
-- Per-container pricing
-- Session-based costs
-
-**File Search Storage**:
-- GB-day pricing model
-- Free tier included
-
-**File Search Calls**:
-- Per-1K-calls pricing
-
-### 🔍 **Tab 5: System Status**
-**Purpose**: Monitor application health and validation
-
-#### System Monitoring
-- 📄 **Pricing files status** (9 files loaded)
-- 📊 **Model counts by category**
-- 💰 **Pricing types distribution**
-- ⚠️ **Issues and warnings**
-
-#### Interactive Charts
-- Bar chart of model distribution
-- Pie chart of pricing types
-- Real-time validation results
-
-### 🧪 **Tab 6: Model Testing Hub**
-**Purpose**: Comprehensive testing for all model types
-
-#### Testing Categories
-
-##### 🤖 Text & Chat Models
-- **Full token counting**
-- **Cost optimization options**
-- **Context window validation**
-- **Real-time cost updates**
-
-##### 🎵 Audio & Speech Models
-**Three Subcategories**:
-
-1. **🎙️ Audio Processing**
-   - Text + Audio token inputs
-   - Cached input support
-   - Real-time cost calculation
-
-2. **🗣️ Text-to-Speech**
-   - Character-based pricing
-   - Live character counting
-   - Model comparison (TTS vs TTS-HD)
-
-3. **📝 Speech-to-Text**
-   - Per-minute pricing
-   - Audio duration input
-   - Whisper model testing
-
-##### 🔤 Embeddings Models
-- **Text input processing**
-- **Dimension information**
-- **Batch API discounts**
-- **Cost per 1K tokens**
-
-##### 🎨 Image Generation
-- **Resolution selection**
-- **Quality options**
-- **Batch image generation**
-- **Sample prompt suggestions**
-
-##### 🔍 Search & Tools
-**Web Search**:
-- Call volume testing
-- Context size impact
-- Cost per 1K calls
-
-**Built-in Tools**:
-- Code interpreter sessions
-- File search storage (GB-days)
-- File search calls
-
-##### 🎓 Fine-tuning Models
-- **Training cost calculation**
-- **Inference cost estimation**
-- **Data sharing options**
-- **Cached input support**
-
-##### 🆓 Free Models
-- **Moderation model testing**
-- **Token counting for free services**
-
-## 💰 Cost Calculation Guide
-
-### Standard Pricing Formula
-```
-Input Cost = (Input Tokens ÷ 1,000,000) × Input Rate
-Output Cost = (Output Tokens ÷ 1,000,000) × Output Rate
-Total Cost = Input Cost + Output Cost
-```
-
-### Discount Applications
-```
-Cached Input = Standard Input Cost × 0.5
-Batch API = Standard Cost × 0.5
-Combined Discount = Standard Cost × 0.25 (maximum savings)
-```
-
-### Model-Specific Calculations
-
-#### Text Models
-```python
-# GPT-4o Example
-input_cost = (tokens / 1_000_000) * 2.50
-output_cost = (tokens / 1_000_000) * 10.00
-```
-
-#### Audio Models
-```python
-# GPT-4o Audio
-text_cost = (text_tokens / 1_000_000) * 2.50
-audio_cost = (audio_tokens / 1_000_000) * 100.00
-```
-
-#### Embeddings
-```python
-# text-embedding-3-small
-cost = (input_tokens / 1_000_000) * 0.02
-```
-
-#### TTS/Whisper
-```python
-# TTS-1
-cost = (characters / 1_000_000) * 15.00
-
-# Whisper-1
-cost = minutes * 0.006
-```
-
-#### Image Generation
-```python
-# DALL-E 3 (1024x1024, standard)
-cost = num_images * 0.040
-```
-
-#### Fine-tuning
-```python
-# Training
-training_cost = (training_tokens / 1_000_000) * 25.00
-
-# Inference (higher rates)
-inference_cost = (tokens / 1_000_000) * 3.75
-```
-
-## 🏗️ Architecture Overview
-
-### File Structure
-```
-tokken_counter/
-├── app.py                 # Main Streamlit application (1,988 lines)
-├── requirements.txt       # Python dependencies
-├── run.py                # Application launcher
-├── test_app.py           # Comprehensive test suite
-├── README.md             # This documentation
-├── .streamlit/
-│   └── config.toml       # Streamlit configuration
-└── pricing_data/         # JSON pricing files
-    ├── text_models.json          # GPT models
-    ├── audio_models.json         # Audio processing
-    ├── transcription_models.json # Speech models
-    ├── embeddings_models.json    # Embedding models
-    ├── fine_tuning_models.json   # Fine-tuning
-    ├── image_generation_models.json  # DALL-E
-    ├── web_search_models.json    # Search models
-    ├── built_in_tools.json       # Special tools
-    └── moderation_models.json    # Free models
-```
-
-### Core Classes
-
-#### `OpenAIModels`
-**Purpose**: Central model management and cost calculation
-```python
-class OpenAIModels:
-    def __init__(self)                    # Initialize and load all pricing data
-    def load_pricing_data(self)           # Load from JSON files
-    def calculate_cost_by_category(self)  # Route to appropriate calculator
-    def calculate_text_model_cost(self)   # Standard text models
-    def calculate_audio_model_cost(self)  # Audio processing
-    def calculate_embeddings_cost(self)   # Embeddings
-    # ... 12 specialized cost calculators
-```
-
-#### `TokenCalculator`
-**Purpose**: Token counting and cost calculation utilities
-```python
-class TokenCalculator:
-    @staticmethod
-    def count_tokens(text, model)         # tiktoken-based counting
-    @staticmethod  
-    def calculate_cost(tokens, model_info) # Legacy cost calculation
-```
-
-#### `FileProcessor`  
-**Purpose**: Multi-format file processing
-```python
-class FileProcessor:
-    @staticmethod
-    def detect_encoding(file_bytes)       # Smart encoding detection
-    @staticmethod
-    def extract_text_from_docx(file)      # Word documents
-    @staticmethod
-    def extract_text_from_pdf(file)       # PDF processing
-    # ... processors for Excel, PowerPoint, etc.
-```
-
-### Pricing Data Structure
-
-Each JSON file follows a consistent structure:
-```json
-{
-  "model_category": {
-    "model_id": {
-      "name": "Display Name",
-      "description": "Model description",
-      "input_cost": 2.50,           // Per 1M tokens
-      "output_cost": 10.00,         // Per 1M tokens
-      "context_window": 128000,     // Token limit
-      "category": "Model Category",
-      "pricing_type": "standard",   // Calculation method
-      "has_cached": true,           // Supports caching
-      "has_batch": true             // Supports batch API
-    }
-  }
-}
-```
-
-## 🎯 Optimization Tips
-
-### Cost Optimization Strategies
-
-#### 1. Model Selection
-- **Simple tasks**: Use GPT-4o Mini or GPT-3.5 Turbo
-- **Complex reasoning**: Use o1-preview or o1-mini
-- **Balanced performance**: Use GPT-4o
-- **Creative tasks**: Use GPT-4.5 preview (when available)
-
-#### 2. Batch API Usage
-```python
-# Use for non-real-time workloads
-use_batch = True  # 50% cost reduction
-```
-
-#### 3. Cached Inputs
-```python
-# For repeated content processing
-use_cached = True  # 50% cost reduction on input
-```
-
-#### 4. Context Window Management
-- **Monitor utilization**: Keep under 80% for optimal performance
-- **Break large content**: Split into smaller chunks
-- **Use appropriate models**: Don't use large context models for small tasks
-
-#### 5. Output Token Control
-- **Optimize prompts**: Request concise responses
-- **Set max_tokens**: Limit output length
-- **Use specific instructions**: Reduce unnecessary verbosity
-
-### Performance Optimization
-
-#### File Processing
-```python
-# Optimal file sizes
-Text files: < 10MB
-PDF files: < 50MB  
-Excel files: < 25MB
-```
-
-#### Memory Management
-- Process large files in chunks
-- Clear session state regularly
-- Use appropriate data types
-
-## 🔧 Configuration
-
-### Streamlit Configuration (`.streamlit/config.toml`)
-```toml
-[server]
-port = 8501
-address = "localhost"
-maxUploadSize = 200         # MB
-enableCORS = false
-
-[theme]
-primaryColor = "#1E90FF"    # Blue accent
-backgroundColor = "#FFFFFF"  # White background
-font = "sans serif"
-
-[browser]
-gatherUsageStats = false    # Privacy focused
-```
-
-### Environment Variables
-```bash
-# Optional: Set custom port
-export STREAMLIT_SERVER_PORT=8501
-
-# Optional: Disable telemetry
-export STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
-```
-
-## 🧪 Testing
-
-### Automated Testing
-Run comprehensive tests before deployment:
-```bash
-python test_app.py
-```
-
-**Test Coverage**:
-- ✅ Import validation (12 modules)
-- ✅ tiktoken functionality  
-- ✅ File processing capabilities
-- ✅ Model data integrity
-- ✅ Token calculation accuracy
-- ✅ Streamlit component functionality
-
-### Manual Testing Checklist
-- [ ] Text input processing
-- [ ] File upload functionality
-- [ ] Cost calculations for each model type
-- [ ] Pricing option toggles
-- [ ] Chart generation
-- [ ] Error handling
-
-## 🚨 Troubleshooting
-
-### Model Management Issues
-
-#### Model Manager Not Loading
-```bash
-# Check required files exist
-ls pricing_data/config.json
-ls pricing_data/*.json
-
-# Verify file permissions
-chmod 644 pricing_data/*.json
-
-# Check logs for detailed errors
-tail -f logs/model_manager.log
-```
-
-#### Validation Failures
-1. **Go to Model Management → Validate Data**
-2. **Review error messages in detail**
-3. **Use Edit Model to fix issues**
-4. **Restore from backup if data is corrupted**
-
-#### Import/Export Issues
-```bash
-# Ensure proper JSON format
-python -c "import json; json.load(open('your_file.json'))"
-
-# Check file permissions
-chmod 644 your_export_file.json
-```
-
-#### Backup/Restore Problems
-```bash
-# Create backup directory
-mkdir -p backups
-
-# Check backup file integrity
-python -c "import json; json.load(open('backups/backup_file.json'))"
-
-# Verify restore permissions
-chmod 755 backups/
-```
-
-### Common Issues
-
-#### Model Data Loading Errors
-```bash
-# Solution 1: Recreate config file
-# The app will auto-generate if missing
-rm pricing_data/config.json
-
-# Solution 2: Validate JSON files
-python -c "
-import json, os
-for f in os.listdir('pricing_data'):
-    if f.endswith('.json'):
-        try:
-            json.load(open(f'pricing_data/{f}'))
-            print(f'✅ {f}')
-        except: print(f'❌ {f}')
-"
-```
-
-#### Import Errors
-```bash
-# Solution: Install all dependencies
-pip install -r requirements.txt
-
-# Verify specific model management dependencies
-pip install --upgrade streamlit pandas
-```
-
-#### Port Already in Use
-```bash
-# Solution: Use different port
-streamlit run app.py --server.port 8502
-```
-
-#### Memory Issues with Large Files
-```bash
-# Solution: Increase upload limit in config.toml
-maxUploadSize = 500
-```
-
-#### Token Counting Errors
-```bash
-# Solution: Check tiktoken installation
-pip install --upgrade tiktoken
-
-# Verify encoding compatibility
-python -c "import tiktoken; print(tiktoken.list_encoding_names())"
-```
-
-### Error Codes
-
-| Error | Cause | Solution |
-|-------|-------|----------|
-| ModuleNotFoundError | Missing dependency | `pip install -r requirements.txt` |
-| FileNotFoundError | Missing pricing data | Check `pricing_data/` folder existence |
-| EncodingError | Invalid file encoding | Use UTF-8 encoded files |
-| MemoryError | File too large | Reduce file size or increase RAM |
-| ValidationError | Invalid model data | Use Model Management validation tools |
-| PermissionError | File access denied | Check file/directory permissions |
-| JSONDecodeError | Malformed JSON | Validate JSON syntax with online tools |
-| ImportError | Module loading failed | Restart application or reinstall dependencies |
-
-### Recovery Procedures
-
-#### Complete Data Recovery
-1. **Check emergency fallback**: App automatically loads minimal models
-2. **Restore from backup**: Use Model Management → Backup/Restore
-3. **Reset to defaults**: Delete pricing_data/ and restart (auto-regenerates)
-4. **Manual restoration**: Copy from original installation
-
-#### Fixing Corrupted Models
-1. **Use validation tool**: Model Management → Validate Data
-2. **Edit problematic models**: Fix validation errors through UI
-3. **Remove invalid models**: Delete through Model Management
-4. **Import clean data**: Use export from working installation
-
-## 📈 Future Enhancements
-
-### Planned Features
-- 🔐 **API key integration** for real-time pricing
-- 📊 **Usage analytics dashboard**  
-- 💾 **Cost history tracking**
-- 🔄 **Automated pricing updates**
-- 🌐 **Multi-language support**
-- 📱 **Mobile-responsive design**
-
-### Extensibility
-The application is designed for easy extension:
-- Add new model types in `pricing_data/`
-- Implement new cost calculators in `OpenAIModels`
-- Create custom file processors in `FileProcessor`
-- Add new UI tabs in the main application
-
-## 📄 License & Credits
-
-### License
-This project is open-source and available under the MIT License.
-
-### Credits
-- **OpenAI**: For providing the models and pricing information
-- **Streamlit**: For the excellent web framework
-- **tiktoken**: For accurate token counting
-- **Community contributors**: For testing and feedback
-
-### Acknowledgments
-- Pricing data accuracy verified against OpenAI's official documentation
-- Regular updates to maintain pricing synchronization
-- Community-driven feature requests and improvements
+- **Header**: "📊 Current Models Overview"
+
+##### **Model Statistics (4 columns)**
+- **Column 1**: Total Models count
+- **Column 2**: Categories count
+- **Column 3**: Pricing Types count
+- **Column 4**: Last Updated date
+
+##### **Category Selection Dropdown**
+- **Label**: "Select Category to View"
+- **Options**: All available categories
+
+##### **Models Table**
+- **Columns**: Model ID, Name, Category, Pricing Type, Input Cost, Output Cost, Context Window
+- **Type**: Full-width DataFrame
+
+##### **Model Details Section**
+- **Model Selection Dropdown**: "Select Model for Details"
+- **Detailed View Expander**: JSON display of model data
+- **Action Buttons (2 columns)**:
+  - **Column 1**: "✏️ Edit [model]" button
+  - **Column 2**: "🗑️ Delete [model]" button
+
+#### **➕ Add Model**
+- **Header**: "➕ Add New Model"
+
+##### **Category Selection**
+- **New Category Input**: "New Category (optional)"
+- **Existing Category Dropdown**: "Select Existing Category"
+
+##### **Add Model Form**
+- **Form Type**: Streamlit form with submit button
+
+###### **Basic Information Fields**
+- **Model ID Input**: Required field with placeholder
+- **Model Name Input**: Required field
+- **Description Text Area**: Required field
+- **Display Category Input**: Pre-filled from selection
+
+###### **Pricing Type Dropdown**
+- **Options**: standard, audio_tokens, realtime_audio, per_minute, per_character, embeddings, fine_tuning, free, per_image, per_call, tool_specific
+
+###### **Dynamic Form Fields (based on pricing type)**
+
+**For Standard/Embeddings:**
+- **Input Cost Number Input** (required)
+- **Output Cost Number Input** (required)
+- **Cached Input Cost Number Input** (optional)
+- **Context Window Number Input** (required)
+- **Has Cached Checkbox**
+- **Has Batch Checkbox**
+- **Dimensions Input** (embeddings only)
+
+**For Audio Models:**
+- **Text Input Cost** (required)
+- **Text Output Cost** (required)
+- **Audio Input Cost** (required)
+- **Audio Output Cost** (required)
+
+**For Per-Minute Models:**
+- **Cost per Minute Input** (required)
+
+**For Per-Character Models:**
+- **Cost per 1M Characters** (required)
+
+**For Free Models:**
+- **No additional cost fields**
+- **Automatically sets is_free flag**
+
+###### **Submit Button**
+- **Label**: "➕ Add Model"
+- **Validation**: Checks required fields
+- **Success/Error Messages**: Displayed after submission
+
+#### **✏️ Edit Model**
+- **Header**: "✏️ Edit Model"
+
+##### **Selection Interface**
+- **Category Dropdown**: "Select Category"
+- **Model Dropdown**: "Select Model to Edit"
+
+##### **Edit Form**
+- **Form Type**: Streamlit form
+- **Pre-filled Values**: Current model data
+- **Editable Fields**: All model properties
+- **Pricing Type**: Display only (non-editable)
+- **Submit Button**: "💾 Save Changes"
+
+#### **🗑️ Delete Model**
+- **Header**: "🗑️ Delete Model"
+- **Warning**: "⚠️ This action cannot be undone without restoring from backup!"
+
+##### **Selection Interface**
+- **Category Dropdown**: "Select Category"
+- **Model Dropdown**: "Select Model to Delete"
+
+##### **Confirmation Interface**
+- **Model Details Display (2 columns)**:
+  - **Column 1**: Model ID, Name
+  - **Column 2**: Category, Type
+- **Confirmation Checkbox**: "I understand that deleting '[model]' is permanent"
+- **Delete Button**: "🗑️ Delete Model" (primary type, requires confirmation)
+
+#### **📤 Import/Export**
+- **Header**: "📤 Import/Export Models"
+
+##### **Two Sub-tabs**
+- **Tab 1**: "📤 Export"
+- **Tab 2**: "📥 Import"
+
+###### **📤 Export Tab**
+- **Header**: "Export Models"
+- **Export All Checkbox**: "Export All Categories"
+- **Category Multi-select**: "Select Categories to Export" (if not exporting all)
+- **Export Info**: Shows model count and category count
+- **Generate Button**: "📤 Generate Export File"
+- **Download Button**: "💾 Download Export File" (appears after generation)
+
+###### **📥 Import Tab**
+- **Header**: "Import Models"
+- **File Uploader**: JSON files only
+- **Import Preview**: Table showing Category, Model ID, Name
+- **Import Mode Radio**: "Merge (keep existing, add new)" vs "Replace (overwrite categories)"
+- **Import Button**: "📥 Import Models"
+
+#### **💾 Backup/Restore**
+- **Header**: "💾 Backup & Restore"
+
+##### **Two Sub-tabs**
+- **Tab 1**: "💾 Backup"
+- **Tab 2**: "🔄 Restore"
+
+###### **💾 Backup Tab**
+- **Header**: "Create Backup"
+- **Backup Button**: "💾 Create Backup Now"
+- **Success/Error Messages**: Status feedback
+
+###### **🔄 Restore Tab**
+- **Header**: "Restore from Backup"
+- **Available Backups Table**: File, Date, Size columns
+- **Backup Selection Dropdown**: "Select Backup to Restore"
+- **Warning**: "⚠️ Restoring will overwrite current model data!"
+- **Restore Button**: "🔄 Restore Backup"
+
+#### **✅ Validate Data**
+- **Header**: "✅ Data Validation"
+- **Validation Button**: "🔍 Run Validation"
+
+##### **Validation Results (3 columns)**
+- **Column 1**: Total Models count
+- **Column 2**: Valid Models count
+- **Column 3**: Errors Found count
+
+##### **Results Table**
+- **Columns**: Category, Model ID, Status, Message
+- **Status Indicators**: "✅ Valid" or "❌ Invalid"
+
+##### **Summary Messages**
+- **Success**: "🎉 All models passed validation!"
+- **Errors**: "❌ Found [X] validation errors. Please review and fix the issues above."
 
 ---
 
-## 🆘 Support
+## 💡 **APPLICATION FOOTER**
 
-### Getting Help
-1. **Check this README** for comprehensive guidance
-2. **Run test suite** to diagnose issues: `python test_app.py`
-3. **Review error messages** in the Streamlit interface
-4. **Check system requirements** and dependencies
-
-### Contributing
-We welcome contributions! Areas for improvement:
-- Additional file format support
-- Enhanced cost optimization algorithms
-- New visualization features
-- Performance optimizations
-- Documentation improvements
+### **Tips Section**
+- **Separator**: Horizontal line
+- **Header**: "💡 Tips:"
+- **Tip Items**:
+  - Use cached input for repeated content to save 50%
+  - Consider Batch API for non-real-time workloads to save 50%
+  - Different models use different encodings for token counting
+  - Image generation and special tools have different pricing structures
 
 ---
 
-**Made with ❤️ for the OpenAI community** | **Version 2.0** | **Last Updated: 2024** 
+## 🎯 **HOW TO USE: COMPLETE WORKFLOW**
+
+### **Step 1: Select Your Model**
+1. **Choose Category**: Use sidebar dropdown to select model category
+2. **Select Model**: Pick specific model from filtered list
+3. **Review Info**: Check model information panel for pricing details
+4. **Set Options**: Enable cached input or batch API if desired
+
+### **Step 2: Calculate Costs**
+**For Text Analysis:**
+1. Go to "📝 Text Input" tab
+2. Paste your text in the input area
+3. Set expected output tokens
+4. View automatic cost calculation
+
+**For File Processing:**
+1. Go to "📁 File Upload" tab
+2. Upload your files (multiple supported)
+3. Review extracted text
+4. Set output tokens for each file
+5. Compare costs across files
+
+**For Specialized Models:**
+1. Go to "🔧 Tools & Special Models" tab
+2. Configure image generation, web search, or tools
+3. View specialized pricing structures
+
+### **Step 3: Compare and Analyze**
+1. Use "📊 Analytics" tab for model comparisons
+2. Use "🧪 Model Testing Hub" for comprehensive testing
+3. Review "🔍 System Status" for validation
+
+### **Step 4: Manage Models (Advanced)**
+1. Use "⚙️ Model Management" tab for configuration
+2. Add custom models or update pricing
+3. Import/export configurations
+4. Create backups before changes
+
+---
+
+## 🔧 **CUSTOMIZATION & ADVANCED FEATURES**
+
+### **Model Data Structure**
+The application loads models from JSON files in the `pricing_data/` directory:
+- `text_models.json`: Standard text models
+- `audio_models.json`: Audio processing models
+- `embeddings_models.json`: Embedding models
+- `fine_tuning_models.json`: Fine-tuning models
+- `image_generation_models.json`: Image generation models
+- `transcription_models.json`: Speech-to-text models
+- `web_search_models.json`: Web search models
+- `built_in_tools.json`: OpenAI tools
+- `moderation_models.json`: Content moderation models
+
+### **Adding Custom Models**
+1. Use the "⚙️ Model Management" tab
+2. Select "➕ Add Model"
+3. Fill in all required fields
+4. Choose appropriate pricing type
+5. Save and test
+
+### **Pricing Types Explained**
+- **standard**: Input/output token pricing
+- **audio_tokens**: Text + audio token pricing
+- **realtime_audio**: Real-time audio processing
+- **per_minute**: Time-based pricing (Whisper)
+- **per_character**: Character-based pricing (TTS)
+- **embeddings**: Input-only token pricing
+- **fine_tuning**: Training + inference pricing
+- **free**: No cost models
+- **per_image**: Image generation pricing
+- **per_call**: API call pricing
+- **tool_specific**: Custom tool pricing
+
+---
+
+## 🚨 **TROUBLESHOOTING**
+
+### **Common Issues**
+
+#### **Application Won't Start**
+- Check Python version (3.8+ required)
+- Install dependencies: `pip install -r requirements.txt`
+- Try: `python run.py` instead of direct Streamlit
+
+#### **Models Not Loading**
+- Check `pricing_data/` directory exists
+- Verify JSON files are valid
+- Use "🔍 System Status" tab to identify issues
+
+#### **File Upload Issues**
+- Ensure file format is supported
+- Check file size (large files may timeout)
+- Verify file isn't corrupted
+
+#### **Incorrect Token Counts**
+- Different models use different tokenizers
+- Counts are estimates for cost calculation
+- Use official OpenAI tokenizer for exact counts
+
+#### **Cost Calculations Seem Wrong**
+- Verify model selection is correct
+- Check if cached input/batch API options are set properly
+- Review cost breakdown for detailed analysis
+
+### **Error Messages**
+- **"Model Manager not available"**: Model management system failed to load
+- **"Error processing [filename]"**: File format not supported or corrupted
+- **"Validation failed"**: Model data doesn't meet requirements
+- **"No models found in category"**: Category has no models loaded
+
+---
+
+## 🆕 **FEATURES & UPDATES**
+
+### **Current Version Features**
+- 7 comprehensive tabs for different use cases
+- Support for all OpenAI model types
+- Advanced cost calculation with discounts
+- File processing for multiple formats
+- Model management system
+- Comprehensive validation and testing
+- Interactive charts and analytics
+- Backup and restore functionality
+
+### **Model Coverage**
+- **Text Models**: All GPT variants including o1 models
+- **Audio Models**: GPT-4o Audio and Realtime Audio
+- **Speech Models**: Whisper transcription and TTS
+- **Vision Models**: GPT-4o with vision capabilities
+- **Embeddings**: All text-embedding models
+- **Fine-tuning**: Custom model training
+- **Image Generation**: DALL-E 2 and 3
+- **Tools**: Code interpreter, file search, web search
+- **Moderation**: Free content moderation
+
+---
+
+## 📞 **SUPPORT & RESOURCES**
+
+### **Getting Help**
+1. **System Status**: Check "🔍 System Status" tab first
+2. **Validation**: Use "✅ Validate Data" in Model Management
+3. **Testing**: Use "🧪 Model Testing Hub" to isolate issues
+4. **Backup**: Create backups before making changes
+
+### **Best Practices**
+- **Regular Backups**: Use Model Management backup feature
+- **Test New Models**: Use Testing Hub before production use
+- **Monitor Costs**: Review analytics regularly
+- **Keep Updated**: Update pricing data when OpenAI changes rates
+
+### **Technical Details**
+- **Framework**: Streamlit for web interface
+- **Token Counting**: tiktoken library for accurate counts
+- **File Processing**: Multiple libraries for format support
+- **Charts**: Plotly for interactive visualizations
+- **Data**: JSON-based model configuration
+
+---
+
+## 📄 **LICENSE & ATTRIBUTION**
+
+This application calculates costs based on publicly available OpenAI pricing information. Pricing data should be verified against official OpenAI documentation for production use.
+
+---
+
+**🎉 You now have a complete understanding of every feature, button, dropdown, tab, and option in the OpenAI Token Counter & Cost Calculator!** 
