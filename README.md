@@ -1,6 +1,6 @@
 # 🧮 OpenAI Token Counter & Cost Calculator
 
-A comprehensive **Streamlit web application** for calculating token counts and costs across **all OpenAI model types** including text models, audio processing, image generation, embeddings, fine-tuning, and specialized tools. This application provides real-time cost analysis with support for batch API, cached inputs, and detailed cost breakdowns.
+A **Streamlit web application** for calculating token counts and costs across **all OpenAI model types** including text models, audio processing, image generation, embeddings, fine-tuning, and specialized tools. This application provides real-time cost analysis with support for batch API, cached inputs, and detailed cost breakdowns.
 
 ## 🆕 **What's New in Version 2.0**
 
