@@ -56,7 +56,7 @@ xlrd>=2.0.1            # Excel file reading
 ### Option 1: Direct Launch (Recommended)
 ```bash
 # 1. Clone or download the project
-git clone <repository-url>
+git clone https://github.com/iamsaifali/token-counter.git
 cd tokken_counter
 
 # 2. Run the application (auto-installs dependencies)
